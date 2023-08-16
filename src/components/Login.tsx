@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemeToggle } from "./ThemeToggle";
+import { useToast } from "./ui/use-toast";
+import axios from "axios";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email." }),
@@ -18,9 +19,9 @@ const formSchema = z.object({
 
 export default function Login() {
   const router = useRouter();
-  const [authStatus, setAuthStatus] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   const { register, handleSubmit, formState } = useForm<
     z.infer<typeof formSchema>
@@ -31,18 +32,14 @@ export default function Login() {
   const onLogin = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      const data = await response.json();
-      if (data.error) {
-        setError(data.message);
-      } else {
-        router.push("/profile");
+      const { email, password } = values;
+      const response = await axios.post("/api/login", values);
+      console.log(response);
+      if (response.status === 200) {
+       toast({
+         description: "Login successful",
+       });
+        router.push("/dashboard");
       }
     } catch (error: any) {
       setError(error.message);

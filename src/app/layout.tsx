@@ -1,8 +1,8 @@
-import { ToastProvider } from "@/providers/toast-provider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +24,7 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={true}
         >
-          <ToastProvider />
+          <Toaster />
           {children}
         </ThemeProvider>
       </body>
