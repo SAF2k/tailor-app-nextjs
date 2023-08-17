@@ -2,13 +2,13 @@ version: '3.9'
 
 services:
     postgres:
-        container_name: tailor_shop_postgres
+        container_name: Tailor_postgres
         image: postgres:alpine
         restart: always
         environment:
-            - POSTGRES_USER=postgres 
-            - POSTGRES_DB=tailor_shop
-            - POSTGRES_PASSWORD=admin
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=Tailor
+            - POSTGRES_PASSWORD=admin@
         ports:
             - 5432:5432
         volumes:
