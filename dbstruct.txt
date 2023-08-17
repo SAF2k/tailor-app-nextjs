@@ -1,0 +1,70 @@
+Certainly! Here's a basic outline of the tables and their attributes that you could have in a tailor shop software's database:
+
+Customers Table:
+
+CustomerID (Primary Key)
+FirstName
+LastName
+ContactNumber
+Email
+Address
+Measurements Table:
+
+MeasurementID (Primary Key)
+CustomerID (Foreign Key referencing Customers)
+BodyPart (e.g., Chest, Waist, Hips)
+MeasurementValue
+Garments Table:
+
+GarmentID (Primary Key)
+GarmentType (e.g., Shirt, Pants, Dress)
+Fabric
+Color
+DesignNotes
+Orders Table:
+
+OrderID (Primary Key)
+CustomerID (Foreign Key referencing Customers)
+GarmentID (Foreign Key referencing Garments)
+Quantity
+OrderDate
+DeliveryDate
+TotalCost
+PaymentStatus
+Appointments Table:
+
+AppointmentID (Primary Key)
+CustomerID (Foreign Key referencing Customers)
+AppointmentDate
+Purpose (e.g., Fitting, Consultation)
+Notes
+Communication Table:
+
+CommunicationID (Primary Key)
+CustomerID (Foreign Key referencing Customers)
+Date
+Medium (e.g., Email, SMS, Phone)
+Content
+DeliveryTable:
+
+DeliveryID (Primary Key)
+OrderID (Foreign Key referencing Orders)
+DeliveryDate
+Address
+Discounts Table:
+
+DiscountID (Primary Key)
+Code
+Description
+Percentage
+Promotions Table:
+
+PromotionID (Primary Key)
+Description
+StartDate
+EndDate
+TailorNotes Table:
+
+NoteID (Primary Key)
+OrderID (Foreign Key referencing Orders)
+Note
