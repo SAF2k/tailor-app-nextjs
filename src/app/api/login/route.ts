@@ -5,16 +5,20 @@ import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { email, password } = await req.json();
+  const { username, password } = await req.json();
 
-  console.log("email", email);
-  
+  console.log(username, password);
+
   const result: Users[] = await db
     .select()
     .from(users)
-    .where(eq(users.email, email));
+    .where(eq(users.username, username));
+    
+    
   if (result) {
-    const passwordMatch = await validatePassword(password, result[0].password);
+    const passwordMatch = password === result[0].password
+    console.log(passwordMatch);
+       
     if (!passwordMatch)
       return NextResponse.json(
         {

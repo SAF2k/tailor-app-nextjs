@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: tailor-postgres
+    environment:
+      POSTGRES_DB: tailor_db
+      POSTGRES_USER: tailor_user
+      POSTGRES_PASSWORD: tailor_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+networks:
+  default:
+    name: tailor-network
+volumes:
+  postgres-data:
+
+
+

@@ -1,3 +1,14 @@
 {
-    "sqltools.connections": []
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "username": "tailor_user",
+            "database": "tailor_db",
+            "password": "tailor_password",
+            "name": "tailor_shop"
+        }
+    ]
 }

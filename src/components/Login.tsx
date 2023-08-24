@@ -11,9 +11,9 @@ import { useToast } from "./ui/use-toast";
 import axios from "axios";
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email." }),
-  password: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  username: z.string().min(4,{ message: "Please enter a valid username." }),
+  password: z.string().min(4, {
+    message: "Username must be at least 4 characters.",
   }),
 });
 
@@ -32,7 +32,7 @@ export default function Login() {
   const onLogin = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      const { email, password } = values;
+      const { username, password } = values;
       const response = await axios.post("/api/login", values);
       console.log(response);
       if (response.status === 200) {
@@ -54,7 +54,7 @@ export default function Login() {
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[60px]">
             <Image src="/favicon.ico" alt="image" width={60} height={60} />
-            <ThemeToggle />
+           
           </span>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
@@ -64,20 +64,20 @@ export default function Login() {
         <form onSubmit={handleSubmit(onLogin)} className="mt-8">
           <div className="space-y-5">
             <div>
-              <label htmlFor="email" className="text-base font-medium">
-                Email address
+              <label htmlFor="username" className="text-base font-medium">
+                User Name
               </label>
               <div className="mt-2">
                 <input
-                  type="email"
-                  id="email"
-                  {...register("email")}
+                  type="text"
+                  id="username"
+                  {...register("username")}
                   className="flex h-10 w-full rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  placeholder="Email"
+                  placeholder="User Name"
                 />
-                {formState.errors.email && (
+                {formState.errors.username && (
                   <p className="text-red-600">
-                    {formState.errors.email.message}
+                    {formState.errors.username.message}
                   </p>
                 )}
               </div>
